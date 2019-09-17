@@ -1,17 +1,16 @@
-var express = require("express");
-var exphbs = require("express-handlebars");
-var mysql = require("mysql");
-
-var app = express();
+const express = require("express");
+const exphbs = require("express-handlebars");
+const mysql = require("mysql");
+const app = express();
 
 // Set the port of our application
 // process.env.PORT lets the port be set by Heroku
 // process.env SQL variables set on Heroku
-var PORT = process.env.PORT || 8080;
-var SQL_DB = process.env.SQL_DB;
-var SQL_PASS = process.env.SQL_PASS;
-var SQL_USER = process.env.SQL_USER;
-var SQL_HOST = process.env.SQL_HOST;
+const PORT = process.env.PORT || 8080;
+const SQL_DB = process.env.SQL_DB;
+const SQL_PASS = process.env.SQL_PASS;
+const SQL_USER = process.env.SQL_USER;
+const SQL_HOST = process.env.SQL_HOST;
 // Parse request body as JSON
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -19,7 +18,7 @@ app.use(express.json());
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-var connection = mysql.createConnection({
+let connection = mysql.createConnection({
   host: SQL_HOST,
   port: 3306,
   user: SQL_USER,
